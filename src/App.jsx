@@ -105,42 +105,64 @@ const ManageMembers = () => {
 
       {/* Modal for Adding/Editing Members */}
       {showModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-          <div className="bg-white p-6 rounded-lg w-96">
-            <h3 className="text-lg font-medium mb-4">
-              {editMemberIndex !== null ? 'Edit Member' : 'Add New Member'}
-            </h3>
-            <input
-              type="text"
-              placeholder="Member Name"
-              className="w-full border border-gray-300 p-2 rounded-md mb-4"
-              value={newMember.name}
-              onChange={(e) => setNewMember({ ...newMember, name: e.target.value })}
-            />
-            <input
-              type="text"
-              placeholder="Role"
-              className="w-full border border-gray-300 p-2 rounded-md mb-4"
-              value={newMember.role}
-              onChange={(e) => setNewMember({ ...newMember, role: e.target.value })}
-            />
-            <div className="flex justify-end space-x-3">
-              <button
-                onClick={() => setShowModal(false)}
-                className="bg-gray-300 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-400"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={handleAddMember}
-                className="bg-sky-600 text-white px-4 py-2 rounded-md hover:bg-sky-700"
-              >
-                Save
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+  <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+    <div className="bg-white p-6 rounded-lg w-96">
+      <h3 className="text-lg font-medium mb-4">Add Staff Member</h3>
+      
+      {/* Full Name Input */}
+      <input
+        type="text"
+        placeholder="Full Name"
+        className="w-full border border-gray-300 p-2 rounded-md mb-4"
+        value={newMember.name}
+        onChange={(e) => setNewMember({ ...newMember, name: e.target.value })}
+      />
+      
+      {/* Email Address Input */}
+      <input
+        type="email"
+        placeholder="Email Address"
+        className="w-full border border-gray-300 p-2 rounded-md mb-4"
+        value={newMember.email || ''}
+        onChange={(e) => setNewMember({ ...newMember, email: e.target.value })}
+      />
+
+      {/* WhatsApp Number Input */}
+      <div className="flex items-center border border-gray-300 p-2 rounded-md mb-4">
+        <span className="text-gray-500 pr-2">+234</span>
+        <input
+          type="text"
+          placeholder="Whatsapp Number"
+          className="flex-1 outline-none"
+          value={newMember.whatsapp || ''}
+          onChange={(e) => setNewMember({ ...newMember, whatsapp: e.target.value })}
+        />
+      </div>
+
+      {/* Role Selection Dropdown */}
+      <select
+        className="w-full border border-gray-300 p-2 rounded-md mb-4"
+        value={newMember.role}
+        onChange={(e) => setNewMember({ ...newMember, role: e.target.value })}
+      >
+        <option value="">Select Role</option>
+        <option value="Consultant">Consultant</option>
+        <option value="Medical Officer">Medical Officer</option>
+        <option value="Nurse">Nurse</option>
+        <option value="Technician">Technician</option>
+      </select>
+
+      {/* Save Button */}
+      <button
+        onClick={handleAddMember}
+        className="w-full bg-sky-600 text-white py-3 rounded-md hover:bg-sky-700"
+      >
+        Save
+      </button>
+    </div>
+  </div>
+)}
+
     </div>
   );
 };
