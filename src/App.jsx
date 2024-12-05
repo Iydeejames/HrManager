@@ -1,35 +1,58 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react';
+import { FaUserPlus } from 'react-icons/fa';
+import { MdEdit } from 'react-icons/md';
 
-function App() {
-  const [count, setCount] = useState(0)
+const ManageMembers = () => {
+  const members = [
+    { name: 'Dr Fagbemi', role: 'Medical Officer' },
+    { name: 'Dr Ojo', role: 'Medical Officer' },
+    { name: 'Dr Wilson', role: 'Medical Officer' },
+    { name: 'Dr Taofeek', role: 'Medical Officer' },
+  ];
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div className="p-6 bg-white min-h-screen">
+      <header className="flex justify-between items-center border-b pb-4 mb-6">
+        <div className="flex items-center space-x-2">
+          <img
+            src="/path/to/logo.png"
+            alt=""
+            className="h-10 w-10 rounded-full"
+          />
+          <span className="text-xl font-semibold">HRGH</span>
+        </div>
+        <button className="text-red-500 font-medium">Logout</button>
+      </header>
 
-export default App
+      <div className="space-y-4">
+        <h2 className="text-xl font-semibold flex items-center space-x-2">
+          <FaUserPlus className="text-gray-500" />
+          <span>Manage Members</span>
+        </h2>
+        <p className="text-gray-600">Add or remove members in your organization</p>
+
+        <button className="w-full bg-green-600 text-white py-3 flex items-center justify-between px-4 rounded-md hover:bg-green-700">
+          <span>Add new Member</span>
+          <FaUserPlus className="text-white" />
+        </button>
+
+        <div className="space-y-3">
+          {members.map((member, index) => (
+            <div
+              key={index}
+              className="flex justify-between items-center bg-gray-100 px-4 py-3 rounded-md"
+            >
+              <div>
+                <h3 className="font-medium">{member.name}</h3>
+                <p className="text-gray-600">{member.role}</p>
+              </div>
+              <MdEdit className="text-gray-400 hover:text-gray-600 cursor-pointer" />
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ManageMembers;
